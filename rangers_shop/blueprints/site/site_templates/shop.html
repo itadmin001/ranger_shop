@@ -1,0 +1,65 @@
+{% extends 'base.html' %}
+
+
+{% block content %}
+
+<div class="container-fluid justify-content-center">
+    <div class="row shop-header p-5">
+        <div class="col-3 d-flex flex-column justify-content-center">
+            <h2>Welcome to your shop!</h2>
+            {% if current_user.is_authenticated %}
+            <h5>all your products will show up here</h5>
+            <a href="{{ url_for('site.create' )}}" class="btn btn-outline-dark mt-3">Create New Products</a>
+            {% else %}
+            <h5>Please Log Into Your Account</h5>
+            <a href="/signin" class="btn btn-outline-dark mt-3">Log In</a>
+            {% endif %}
+        </div>
+    </div>
+</div>
+{% if current_user.is_authenticated %}
+<div class="row bg-dark p-3 shop-stats">
+    <!-- Eventually we will query our database to populate these stats  -->
+    <div class="col d-flex justify-content-center">Total # of Customers: {{ stats.customers }}</div> 
+    <div class="col d-flex justify-content-center">Total Sales : $ {{ stats.sales }}</div>
+    <div class="col d-flex justify-content-center">Total Products: {{ stats.products }}</div>
+</div>
+<!-- Eventually our Products will show up down here! -->
+{% for product in shop %}
+    <div class="row mt-5 mb-5 justify-content-center">
+        <div class="card d-flex rounded shadow flex-row w-50 p-3">
+            <div class="d-flex align-items-center" style="max-width:230px">
+                <img src="{{ product.image }}" class="img-fluid rounded" alt="cute plant image">
+            </div>
+            <div class="card-body d-flex flex-column justify-content-center p-4">
+                <h5 class="card-title">{{ product.name }}</h5>
+                <p class="card-text">{{ product.description }}</p>
+                <ul class="list-group list-group-flush">
+                    <li class="list-group-item">Price: {{ product.price }}</li>
+                    <li class="list-group-item">Quantity: {{ product.quantity }}</li>
+                    {% if product.quantity <= 10 %}
+                        <span class='err-msg btn-danger p-2 opacity-50 rounded'> ALERT: Quantity is Low</span>
+                    {% endif %}
+                </ul>
+                <div class="mt-2">
+                    <a href="{{ url_for('site.update', id=product.prod_id ) }}" class="card-link btn btn-warning">Update</a>
+                    <a href="{{ url_for('site.delete', id=product.prod_id ) }}" class="card-link btn btn-danger">Delete</a>
+                </div>
+            </div>
+        </div>
+    </div>
+{% endfor %}
+
+
+
+
+{% else %}
+<div class="row mt-5 mb-5 d-flex align-items-center">
+    <h3 class="d-flex justify-content-center">Your Products Will Show Here Once Logged In</h3>
+</div>
+{% endif %}
+
+
+
+
+{% endblock content %}

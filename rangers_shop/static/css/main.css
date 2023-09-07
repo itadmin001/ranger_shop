@@ -1,0 +1,14 @@
+/* CSS for our Shop page */
+
+
+
+.shop-header {
+    background-image: url('https://image.tmdb.org/t/p/original/6CE4tc3g5al7VInQ2Z3atveEUR5.jpg');
+    background-size: cover;
+    height: 700px;
+    color: white; 
+}
+
+.shop-stats {
+    color: white; 
+}

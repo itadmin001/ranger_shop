@@ -1,0 +1,41 @@
+
+
+
+
+            <form class="row g-3" method="POST">
+                {{ form.hidden_tag() }}
+                <div class="col-md-12">
+                    {{ form.name.label }}
+                    {{form.name(class='form-control mt-2', placeholder = 'Carnivous Plant')}}
+                    {% for error in form.name.errors %}
+                        <span class="err-msg">{{ error }}</span>
+                    {% endfor %}
+                </div>
+                <div class="col-md-12">
+                    {{ form.image.label }}
+                    {{form.image(class='form-control mt-2')}}
+                </div>
+                <div class="col-12">
+                    {{ form.description.label }}
+                    {{ form.description(class='form-control mt-2')}}
+                    
+                </div>
+                <div class="col-12">
+                    {{ form.price.label }}
+                    {{ form.price(class='form-control mt-2', placeholder = '7.99' )}}
+                    {% for error in form.price.errors %}
+                        <span class="err-msg">{{ error }}</span>
+                    {% endfor %}
+                </div>
+                <div class="col-6">
+                    {{ form.quantity.label }}
+                    {{ form.quantity(class='form-control mt-2', placeholder = '100' )}}
+                    {% for error in form.quantity.errors %}
+                        <span class="err-msg">{{ error }}</span>
+                    {% endfor %}
+                </div>
+                <div class="col-12">
+                    {{ form.submit(class='btn btn-primary') }}
+                </div>
+
+            </form>
