@@ -126,7 +126,7 @@ def update_order(order_id):
 
     elif prodorder.quantity > new_quantity:
         product.increment_quantity(diff)
-        product.decrement_order_total(prodorder.price)
+        order.decrement_order_total(prodorder.price)
 
 
     prodorder.update_quantity(new_quantity)
