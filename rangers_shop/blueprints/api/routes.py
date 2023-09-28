@@ -50,6 +50,7 @@ def get_order(cust_id):
     prodorder = ProdOrder.query.filter(ProdOrder.cust_id == cust_id).all
 
     data=[]
+    print(data)
 
     #need to traverse to grab all products from each order
     for order in prodorder:
