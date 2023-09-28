@@ -81,11 +81,11 @@ def create_order(cust_id):
         db.session.add(customer)
 
     order = Order()
-
+    db.session.add(order)
     for product in customer_order:
 
         prodorder = ProdOrder(product['prod_id'],product['quantity'],product['price'],order.order_id,customer.cust_id)
-
+        db.session.add(prodorder)
         #add price from prodorder table to increcemt order price
 
         order.increment_order_total(prodorder.price)
@@ -93,11 +93,8 @@ def create_order(cust_id):
         #decrement the avail quant of product
         current_product = Product.query.filter(Product.prod_id == product['prod_id']).first()
         current_product.decrement_quantity(product['quantity'])
-
-        db.session.add(order)
-        db.session.add(prodorder)
-        db.session.commit()
-
+        
+    db.session.commit()
     return {
         'status':200,
         'message':'A new order was created'
