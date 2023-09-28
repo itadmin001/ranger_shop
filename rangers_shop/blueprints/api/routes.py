@@ -63,8 +63,8 @@ def get_order(cust_id):
         prod_data['id'] = order.prod_id #need to make products usinqe even if they oar the same product
 
         data.append(prod_data)
-
-    return jsonify(data)
+    if data:
+        return jsonify(data)
 
 
 #create our CREATE data request for orders, usually associated with 'POST'
