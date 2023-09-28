@@ -94,9 +94,9 @@ def create_order(cust_id):
         current_product = Product.query.filter(Product.prod_id == product['prod_id']).first()
         current_product.decrement_quantity(product['quantity'])
 
-    db.session.add(order)
-    db.session.add(prodorder)
-    db.session.commit()
+        db.session.add(order)
+        db.session.add(prodorder)
+        db.session.commit()
 
     return {
         'status':200,
