@@ -47,7 +47,7 @@ def get_order(cust_id):
     #We need to grab all the order_ids associated with the customer
     #Grab all the products on that particular order 
 
-    prodorder = ProdOrder.query.filter(ProdOrder.cust_id == cust_id).all
+    prodorder = ProdOrder.query.filter(ProdOrder.cust_id == cust_id).all()
 
     data=[]
     print(data)
