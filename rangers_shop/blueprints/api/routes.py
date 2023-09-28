@@ -63,7 +63,6 @@ def get_order(cust_id):
         prod_data['id'] = order.prod_id #need to make products usinqe even if they oar the same product
 
         data.append(prod_data)
-    if data:
         return jsonify(data)
 
 
