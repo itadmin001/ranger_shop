@@ -60,7 +60,7 @@ def get_order(cust_id):
 
         prod_data['quantity'] = order.quantity #coming from the prodorder table
         prod_data['order_id'] = order.order_id #want to associate this product with a specific user
-        prod_data['id'] = order.prod_id #need to make products usinqe even if they oar the same product
+        prod_data['id'] = order.prodorder_id #need to make products usinqe even if they oar the same product
 
         data.append(prod_data)
     return jsonify(data)
